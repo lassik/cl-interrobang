@@ -40,15 +40,24 @@
             (let ((new-name (concatenate 'string stem new-suffix)))
               (return new-name))))))))
 
+(defvar *manual-conversions*
+  '(("atom?" "atom")
+    ("null?" "null")))
+
 (defvar *conversions*
-  (remove nil
-          (map 'list
-               (lambda (old-name)
-                 (let ((new-name (convert old-name)))
-                   (when new-name
-                     (list new-name
-                           old-name))))
-               *names*)))
+  (sort
+   (append
+    *manual-conversions*
+    (remove nil
+            (map 'list
+                 (lambda (old-name)
+                   (let ((new-name (convert old-name)))
+                     (when new-name
+                       (list new-name
+                             old-name))))
+                 *names*)))
+   #'string<
+   :key #'first))
 
 (defun new-name (conv) (first conv))
 (defun old-name (conv) (second conv))
