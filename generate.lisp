@@ -12,13 +12,14 @@
   (map 'list #'string-downcase (read-lines "exceptions.txt")))
 
 (defun remove-prefix (fix str)
-  (and (search fix str :end2 (min (length fix) (length str)))
-       (subseq str (length fix))))
+  (let ((minlen (min (length str) (length fix))))
+    (and (search fix str :end2 minlen)
+         (subseq str (length fix)))))
 
 (defun remove-suffix (fix str)
-  (and (search fix str :start2 (- (length str)
-                                  (min (length fix) (length str))))
-       (subseq str 0 (- (length str) (length fix)))))
+  (let ((minlen (min (length str) (length fix))))
+    (and (search fix str :start2 (- (length str) minlen))
+         (subseq str 0 (- (length str) (length fix))))))
 
 (defvar *rules*
   ;; You'll get botched conversions if these are in the wrong order.
