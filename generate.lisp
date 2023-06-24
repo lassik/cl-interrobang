@@ -40,7 +40,19 @@
 
 (defvar *manual-conversions*
   '(("atom?" "atom")
-    ("null?" "null")))
+    ("clrhash!" "clrhash")
+    ("mapcan!" "mapcan")
+    ("mapcon!" "mapcon")
+    ("null?" "null")
+    ("pop!" "pop")
+    ("pprint-indent!" "pprint-indent")
+    ("push!" "push")
+    ("pushnew!" "pushnew")
+    ("read-sequence!" "read-sequence")
+    ("remhash!" "remhash")
+    ("remprop!" "remprop")
+    ("rplaca!" "rplaca")
+    ("rplacd!" "rplacd")))
 
 (defvar *conversions*
   (sort

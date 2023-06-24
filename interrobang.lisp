@@ -4,14 +4,16 @@
  (:export #:adjustable-array? #:alpha-char? #:alphanumeric?
   #:array-has-fill-pointer? #:array-in-bounds? #:array? #:atom? #:bit-vector?
   #:both-case? #:bound? #:butlast! #:char-greater? #:char-less?
-  #:char-not-greater? #:char-not-less? #:character? #:compiled-function?
-  #:complex? #:conc! #:cons? #:constant? #:dec! #:defset! #:digit-char? #:end?
-  #:equal? #:even? #:fbound? #:float? #:function? #:get! #:graphic-char?
-  #:hash-table? #:inc! #:input-stream? #:integer? #:interactive-stream?
-  #:intersection! #:keyword? #:list? #:logbit? #:lower-case? #:minus? #:null?
-  #:number? #:odd? #:open-stream? #:output-stream? #:package?
-  #:pathname-match? #:pathname? #:plus? #:pset! #:random-state? #:rational?
-  #:readtable? #:real? #:reconc! #:rem! #:reverse! #:rotate! #:set!
+  #:char-not-greater? #:char-not-less? #:character? #:clrhash!
+  #:compiled-function? #:complex? #:conc! #:cons? #:constant? #:dec! #:defset!
+  #:digit-char? #:end? #:equal? #:even? #:fbound? #:float? #:function? #:get!
+  #:graphic-char? #:hash-table? #:inc! #:input-stream? #:integer?
+  #:interactive-stream? #:intersection! #:keyword? #:list? #:logbit?
+  #:lower-case? #:mapcan! #:mapcon! #:minus? #:null? #:number? #:odd?
+  #:open-stream? #:output-stream? #:package? #:pathname-match? #:pathname?
+  #:plus? #:pop! #:pprint-indent! #:pset! #:push! #:pushnew! #:random-state?
+  #:rational? #:read-sequence! #:readtable? #:real? #:reconc! #:rem!
+  #:remhash! #:remprop! #:reverse! #:rotate! #:rplaca! #:rplacd! #:set!
   #:set-difference! #:set-exclusive-or! #:shift! #:simple-bit-vector?
   #:simple-string? #:simple-vector? #:slot-bound? #:slot-exists?
   #:special-operator? #:standard-char? #:stream? #:string-capitalize!
@@ -37,9 +39,9 @@
   (alias 'char-less? 'char-lessp)
   (alias 'char-not-greater? 'char-not-greaterp)
   (alias 'char-not-less? 'char-not-lessp) (alias 'character? 'characterp)
-  (alias 'compiled-function? 'compiled-function-p) (alias 'complex? 'complexp)
-  (alias 'conc! 'nconc) (alias 'cons? 'consp) (alias 'constant? 'constantp)
-  (alias 'dec! 'decf) (alias 'defset! 'defsetf)
+  (alias 'clrhash! 'clrhash) (alias 'compiled-function? 'compiled-function-p)
+  (alias 'complex? 'complexp) (alias 'conc! 'nconc) (alias 'cons? 'consp)
+  (alias 'constant? 'constantp) (alias 'dec! 'decf) (alias 'defset! 'defsetf)
   (alias 'digit-char? 'digit-char-p) (alias 'end? 'endp)
   (alias 'equal? 'equalp) (alias 'even? 'evenp) (alias 'fbound? 'fboundp)
   (alias 'float? 'floatp) (alias 'function? 'functionp) (alias 'get! 'getf)
@@ -49,16 +51,21 @@
   (alias 'interactive-stream? 'interactive-stream-p)
   (alias 'intersection! 'nintersection) (alias 'keyword? 'keywordp)
   (alias 'list? 'listp) (alias 'logbit? 'logbitp)
-  (alias 'lower-case? 'lower-case-p) (alias 'minus? 'minusp)
-  (alias 'null? 'null) (alias 'number? 'numberp) (alias 'odd? 'oddp)
+  (alias 'lower-case? 'lower-case-p) (alias 'mapcan! 'mapcan)
+  (alias 'mapcon! 'mapcon) (alias 'minus? 'minusp) (alias 'null? 'null)
+  (alias 'number? 'numberp) (alias 'odd? 'oddp)
   (alias 'open-stream? 'open-stream-p)
   (alias 'output-stream? 'output-stream-p) (alias 'package? 'packagep)
   (alias 'pathname-match? 'pathname-match-p) (alias 'pathname? 'pathnamep)
-  (alias 'plus? 'plusp) (alias 'pset! 'psetf)
+  (alias 'plus? 'plusp) (alias 'pop! 'pop)
+  (alias 'pprint-indent! 'pprint-indent) (alias 'pset! 'psetf)
+  (alias 'push! 'push) (alias 'pushnew! 'pushnew)
   (alias 'random-state? 'random-state-p) (alias 'rational? 'rationalp)
-  (alias 'readtable? 'readtablep) (alias 'real? 'realp)
-  (alias 'reconc! 'nreconc) (alias 'rem! 'remf) (alias 'reverse! 'nreverse)
-  (alias 'rotate! 'rotatef) (alias 'set! 'setf)
+  (alias 'read-sequence! 'read-sequence) (alias 'readtable? 'readtablep)
+  (alias 'real? 'realp) (alias 'reconc! 'nreconc) (alias 'rem! 'remf)
+  (alias 'remhash! 'remhash) (alias 'remprop! 'remprop)
+  (alias 'reverse! 'nreverse) (alias 'rotate! 'rotatef)
+  (alias 'rplaca! 'rplaca) (alias 'rplacd! 'rplacd) (alias 'set! 'setf)
   (alias 'set-difference! 'nset-difference)
   (alias 'set-exclusive-or! 'nset-exclusive-or) (alias 'shift! 'shiftf)
   (alias 'simple-bit-vector? 'simple-bit-vector-p)
