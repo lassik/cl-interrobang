@@ -11,13 +11,6 @@
 (defvar *exceptions*
   (map 'list #'string-downcase (read-lines "exceptions.txt")))
 
-(defvar *rules*
-  ;; You'll get botched conversions if these are in the wrong order.
-  '((suffix "-p" "?")
-    (suffix "p" "?")
-    (prefix "n" "!")
-    (suffix "f" "!")))
-
 (defun remove-prefix (fix str)
   (and (search fix str :end2 (min (length fix) (length str)))
        (subseq str (length fix))))
@@ -27,12 +20,17 @@
                                   (min (length fix) (length str))))
        (subseq str 0 (- (length str) (length fix)))))
 
+(defvar *rules*
+  ;; You'll get botched conversions if these are in the wrong order.
+  `((,#'remove-suffix "-p" "?")
+    (,#'remove-suffix "p" "?")
+    (,#'remove-prefix "n" "!")
+    (,#'remove-suffix "f" "!")))
+
 (defun convert (old-name)
   (unless (find old-name *exceptions* :test #'equal)
     (dolist (rule *rules*)
-      (let ((remove-fix (ecase (first rule)
-                          ((prefix) #'remove-prefix)
-                          ((suffix) #'remove-suffix)))
+      (let ((remove-fix (first rule))
             (old-fix (second rule))
             (new-suffix (third rule)))
         (let ((stem (funcall remove-fix old-fix old-name)))
