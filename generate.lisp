@@ -30,9 +30,7 @@
 (defun conversion (old-name)
   (unless (find old-name *exceptions* :test #'equal)
     (dolist (rule *rules*)
-      (let ((remove-fix (first rule))
-            (old-fix (second rule))
-            (new-suffix (third rule)))
+      (destructuring-bind (remove-fix old-fix new-suffix) rule
         (let ((stem (funcall remove-fix old-fix old-name)))
           (when stem
             (let ((new-name (concatenate 'string stem new-suffix)))
