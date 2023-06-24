@@ -27,7 +27,7 @@
     (,#'remove-prefix "n" "!")
     (,#'remove-suffix "f" "!")))
 
-(defun convert (old-name)
+(defun conversion (old-name)
   (unless (find old-name *exceptions* :test #'equal)
     (dolist (rule *rules*)
       (let ((remove-fix (first rule))
@@ -36,7 +36,7 @@
         (let ((stem (funcall remove-fix old-fix old-name)))
           (when stem
             (let ((new-name (concatenate 'string stem new-suffix)))
-              (return new-name))))))))
+              (return (list new-name old-name)))))))))
 
 (defvar *manual-conversions*
   '(("atom?" "atom")
@@ -58,14 +58,7 @@
   (sort
    (append
     *manual-conversions*
-    (remove nil
-            (map 'list
-                 (lambda (old-name)
-                   (let ((new-name (convert old-name)))
-                     (when new-name
-                       (list new-name
-                             old-name))))
-                 *names*)))
+    (remove nil (map 'list #'conversion *names*)))
    #'string<
    :key #'first))
 
