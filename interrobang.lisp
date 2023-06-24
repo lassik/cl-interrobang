@@ -6,7 +6,7 @@
   #:both-case? #:bound? #:butlast! #:char-greater? #:char-less?
   #:char-not-greater? #:char-not-less? #:character? #:clrhash!
   #:compiled-function? #:complex? #:conc! #:cons? #:constant? #:dec! #:defset!
-  #:digit-char? #:end? #:equal? #:even? #:fbound? #:float? #:function? #:get!
+  #:digit-char? #:end? #:equal? #:even? #:fbound? #:float? #:function?
   #:graphic-char? #:hash-table? #:inc! #:input-stream? #:integer?
   #:interactive-stream? #:intersection! #:keyword? #:list? #:logbit?
   #:lower-case? #:mapcan! #:mapcon! #:minus? #:null? #:number? #:odd?
@@ -44,7 +44,7 @@
   (alias 'constant? 'constantp) (alias 'dec! 'decf) (alias 'defset! 'defsetf)
   (alias 'digit-char? 'digit-char-p) (alias 'end? 'endp)
   (alias 'equal? 'equalp) (alias 'even? 'evenp) (alias 'fbound? 'fboundp)
-  (alias 'float? 'floatp) (alias 'function? 'functionp) (alias 'get! 'getf)
+  (alias 'float? 'floatp) (alias 'function? 'functionp)
   (alias 'graphic-char? 'graphic-char-p) (alias 'hash-table? 'hash-table-p)
   (alias 'inc! 'incf) (alias 'input-stream? 'input-stream-p)
   (alias 'integer? 'integerp)
